@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Regilder Tool</title>
+  <meta name="description" content="Regilder tool for Clicker Heroes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/regilder.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <div id="loader" class="overlay loader" >
+    <img src="img/loading_donut.png" id="logo-donut" alt="logo" class="overlay-image"/>
+    <img src="img/loading_circles.png" id="logo-circles" alt="logo" class="overlay-image"/>
+    <img src="img/loading_dots.png" id="logo-dots" alt="logo" class="overlay-image"/>
+  </div>
+
+  <div id="savedata" class="view">
+    <div id="savedata-dialog" class="dialog">
+      <form id="savedata-form" class="data-form">
+        <div id="savedata-field-wrapper" class="wrapper">
+          <p><label for="savedata-input">Enter your savegame here:</label></p>
+          <textarea id="savedata-input" class="data-input"></textarea>
+        </div>
+
+        <div id="savedata-button-wrapper" class="wrapper">
+          <button type="button" id="savedata-button" onClick="processTextInput()">Validate</button>
+        </div>
+
+        <div id="savedata-message-wrapper" class="wrapper">
+          <div id="savedata-message" class="message">Error.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="regilder" class="view" style="display: none;">
+    <header id="regilder-header">
+      <p>
+        Edit <code>src/Regilder.js</code> and save the files to reload.
+      </p>
+      <a
+        class="Regilder-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+    </header>
+  </div>
+
+  <!-- Script loading -->
+  <script src="js/vendor/pako-1.0.11.min.js"></script>
+  <script src="js/regilder.js"></script>
+
+  <!-- Google Analytics -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
