@@ -54,9 +54,27 @@ code {
 
 .dialog {
   background-color: #393d45;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px;
+}
+
+.dialog#savedata-dialog {
   min-height: 40vh;
   min-width: 80vw;
-  text-align: center;
+  border-radius: 64px;
+}
+
+.dialog#regilder-options {
+  font-size: calc(10px + 1vmin);
+  min-width: 20vw;
+}
+
+.dialog#regilder-output-wrapper {
+  min-height: 10vh;
+  min-width: 20vw;
+  max-height: 40vh;
   border-radius: 32px;
 }
 
@@ -67,13 +85,33 @@ code {
 
 .data-input {
   background-color: #333333;
-  min-height: 40vh;
   color: #ffffff;
-  min-width: 60vw;
-  padding: 10px;
+  padding: 8px;
   margin-bottom: calc(10px + 2vmin);
   border-radius: 16px;
   font-size: calc(10px + 1vmin);
+}
+
+.data-input#savedata-input {
+  min-height: 40vh;
+  min-width: 60vw;
+}
+
+.data-input#regilder-options-amount {
+  text-align: center;
+}
+
+.data-output {
+  min-height: 10vh;
+  max-height: 30vh;
+  overflow: auto;
+  background-color: #111111;
+  color: #ffffff;
+  margin: 8px 8px calc(10px + 2vmin);
+  padding: 0 8px;
+  border-radius: 16px;
+  font-size: calc(10px + 1vmin);
+  text-align: left;
 }
 
 #savedata-button {
