@@ -68,13 +68,13 @@ code {
 
 .dialog#regilder-options {
   font-size: calc(10px + 1vmin);
-  min-width: 20vw;
+  min-width: 25vw;
 }
 
 .dialog#regilder-output-wrapper {
   min-height: 10vh;
-  min-width: 20vw;
-  max-height: 40vh;
+  min-width: 25vw;
+  max-height: 50vh;
   border-radius: 32px;
 }
 
@@ -86,8 +86,7 @@ code {
 .data-input {
   background-color: #333333;
   color: #ffffff;
-  padding: 8px;
-  margin-bottom: calc(10px + 2vmin);
+  padding: 4px;
   border-radius: 16px;
   font-size: calc(10px + 1vmin);
 }

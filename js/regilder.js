@@ -144,13 +144,13 @@ function getErrorMessage(category, id) {
  */
 function readSavegame(saveGame) {
   if (saveGame == null || saveGame.length === 0 || saveGame === "") {
-    if (debug) { console.log("Save data is empty."); return; }
+    if (debug) { console.log("Save data is empty."); }
     throw getErrorMessage("read", 0);
   }
 
   let hashAlgo = saveGame.startsWith(HASH_ZLIB) ? 1 : saveGame.startsWith(HASH_DEFLATE) ? 2 : 0
   if (!hashAlgo) {
-    if (debug) { console.log("No compression algorithm hash found."); return; }
+    if (debug) { console.log("No compression algorithm hash found."); }
     throw getErrorMessage("read", 1);
   }
 
@@ -161,7 +161,7 @@ function readSavegame(saveGame) {
   try {
     decodedData = atob(rawData); // Decode Base64
   } catch (error) {
-    if (debug) { console.log("An error occurred during decoding:\n" + error.message); return; }
+    if (debug) { console.log("An error occurred during decoding:\n" + error.message); }
     throw getErrorMessage("read", 2);
   }
 
@@ -171,7 +171,7 @@ function readSavegame(saveGame) {
   try {
     decompressedData = hashAlgo === 2 ? LIB_PAKO.inflateRaw(decodedData, { to: 'string'}) : LIB_PAKO.inflate(decodedData, { to: 'string'});
   } catch (error) {
-    if (debug) { console.log("An error occurred during decompression:\n" + error.message); return; }
+    if (debug) { console.log("An error occurred during decompression:\n" + error.message); }
     throw getErrorMessage("read", 3);
   }
 
@@ -181,14 +181,14 @@ function readSavegame(saveGame) {
   try {
     jsonData = JSON.parse(decompressedData);
   } catch (error) {
-    if (debug) { console.log("An error occurred during parsing:\n" + error.message); return; }
+    if (debug) { console.log("An error occurred during parsing:\n" + error.message); }
     throw getErrorMessage("read", 4);
   }
 
   if (debug) { console.log("JSON Data: " + jsonData); }
 
   if (jsonData == null) {
-    if (debug) { console.log("The decompressed data could not be parsed as JSON."); return; }
+    if (debug) { console.log("The decompressed data could not be parsed as JSON."); }
     throw getErrorMessage("read", 5);
   }
 
@@ -196,14 +196,14 @@ function readSavegame(saveGame) {
   let versionNumber = jsonData["version"];
   if (debug) { console.log("Patch: " + patchNumber + " | Version: " + versionNumber); }
 
-  if ((!patchNumber.startsWith("1.0e11") && !patchNumber.startsWith("1.0e12")) || versionNumber !== 7) {
-    if (debug) { console.log("The savegame patch version is not supported."); return; }
+  if ((!patchNumber.startsWith("1.0e11") && !patchNumber.startsWith("1.0e12") && !patchNumber.startsWith("2.7")) || versionNumber !== 7) {
+    if (debug) { console.log("The savegame patch version is not supported."); }
     throw getErrorMessage("read", 6);
   }
 
   heroData = JSON.parse(staticHeroData);
   if (heroData == null) {
-    if (debug) { console.log("The hero data could not be loaded or read properly."); return; }
+    if (debug) { console.log("The hero data could not be loaded or read properly."); }
     throw getErrorMessage("read", 7);
   }
 
@@ -329,7 +329,7 @@ function switchView(view) {
 }
 
 function switchViewToRegilder() {
-  let nextGilds = calculateNextGilds(10);
+  let nextGilds = calculateNextGilds(100);
   if (debug) { console.log("Next gilds: " + nextGilds); }
   switchView("regilder");
   for (i = 0; i < nextGilds.length; i++) {
