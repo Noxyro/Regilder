@@ -65,7 +65,6 @@ function registerViews(views) {
     return;
   }
 
-  let element;
   for (let i = 0; i < views.length; i++) {
     let id = i;
 
@@ -332,33 +331,21 @@ function switchViewToRegilder() {
   let nextGilds = calculateNextGilds(100);
   if (debug) { console.log("Next gilds: " + nextGilds); }
   switchView("regilder");
-  for (i = 0; i < nextGilds.length; i++) {
+  for (let i = 0; i < nextGilds.length; i++) {
     let listEntry = document.getElementById("regilder-output-list-entry-" + i);
     if (listEntry == null) {
-      listEntry = createElement("li", "regilder-output-list-entry-" + i,);
+      listEntry = createElement("li", "regilder-output-list-entry-" + i);
       document.getElementById("regilder-output-list").appendChild(listEntry);
     }
 
     let heroName = getHeroName(nextGilds[i])
-    setElementInnerHTML(listEntry, "<img src=\"favicon.ico\" alt=\"" + nextGilds[i] + "\"/> - " + heroName)
+    listEntry.innerHTML = "<img src=\"favicon.ico\" alt=\"" + nextGilds[i] + "\"/> - " + (i % 2 === 0 ? "<b style='color: grey'>" : "") + heroName
   }
 }
 
 /*
  * HTML helper functions
  */
-function setElementInnerHTML(element, innerHTML) {
-  element.innerHTML = innerHTML;
-}
-
-function setElementAttribute(element, attribute, value) {
-  if (element == null || attribute === "") {
-    return;
-  }
-
-  element.setAttribute(attribute, value);
-}
-
 function setElementStyleProperty(element, property, value) {
   if (element == null || element.style == null || property == null || property === "") {
     return;
@@ -371,10 +358,9 @@ function setElementDisplay(element, value) {
   setElementStyleProperty(element, "display", value);
 }
 
-function createElement(tagName, id = "", classList = [], innerHTML = "") {
+function createElement(tagName, id = "", ...classList) {
   let element = document.createElement(tagName)
   classList.forEach((clazz) => { element.classList.add(clazz) });
-  element.innerHTML = innerHTML;
 
   return element;
 }
